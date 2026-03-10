@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.2
+# syntax=docker/dockerfile:1.4
 # Base user uid / gid keep 1000 on prod, align with your user on dev
 ARG USER_UID=1000
 ARG USER_GID=1000
@@ -201,7 +201,7 @@ RUN set -x && \
 # Run www-data user AS host user 'off' or developper uid
 ARG USER_UID
 ARG USER_GID
-RUN usermod --uid $USER_UID www-data && \
+RUN usermod --shell /bin/bash --uid $USER_UID www-data && \
     groupmod --gid $USER_GID www-data
 
 
